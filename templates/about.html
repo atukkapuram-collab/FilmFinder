@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | FilmFinder</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="/" class="logo">Film<span>Finder</span></a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/discover">Discover</a>
+            <a href="/my-movies">My Movies</a>
+            <a href="/about" class="active">About</a>
+        </div>
+
+        <a href="/discover" class="nav-button">Get Started</a>
+    </nav>
+
+
+    <main class="about-page">
+
+        <!-- HERO -->
+        <section class="about-hero">
+            <p class="section-eyebrow">ABOUT FILMFINDER</p>
+
+            <h1>
+                Better recommendations.
+                <span>Better discoveries.</span>
+            </h1>
+
+            <p class="about-hero-description">
+                FilmFinder combines multiple recommendation approaches
+                to help you discover movies that match your interests.
+                Behind the experience is a system built through
+                experimentation, evaluation, and continuous refinement.
+            </p>
+
+            <a href="#recommendation-engine" class="primary-button">
+                Explore the Technology
+            </a>
+        </section>
+
+
+        <!-- MISSION -->
+        <section class="about-mission">
+            <div class="about-section-heading">
+                <p class="section-eyebrow">THE IDEA</p>
+                <h2>Finding a movie should be the easy part.</h2>
+            </div>
+
+            <p>
+                With thousands of movies to choose from, finding something
+                worth watching can be surprisingly difficult. FilmFinder
+                was created to make that process more personal by using
+                movie information and audience rating patterns to generate
+                recommendations tailored to individual preferences.
+            </p>
+        </section>
+
+
+        <!-- RECOMMENDATION ENGINE -->
+        <section class="recommendation-engine" id="recommendation-engine">
+
+            <div class="about-section-heading">
+                <p class="section-eyebrow">THE RECOMMENDATION ENGINE</p>
+
+                <h2>
+                    Three approaches.
+                    <span>One smarter recommendation system.</span>
+                </h2>
+
+                <p>
+                    No single recommendation method captures every
+                    dimension of what makes someone enjoy a movie.
+                    FilmFinder combines content analysis, semantic
+                    understanding, and collaborative filtering to
+                    produce a more personalized result.
+                </p>
+            </div>
+
+
+            <div class="model-cards">
+
+                <!-- TF-IDF -->
+                <article class="model-card">
+                    <div class="model-number">01</div>
+
+                    <h3>Content-Based Filtering</h3>
+
+                    <p class="model-subtitle">Understanding what you like</p>
+
+                    <p>
+                        FilmFinder analyzes movie genres, tags, and plot
+                        information to identify films with similar
+                        characteristics to the movies you enjoy.
+                    </p>
+
+                    <div class="model-detail">
+                        <span>TF-IDF</span>
+                        <span>25% of hybrid weighting</span>
+                    </div>
+                </article>
+
+
+                <!-- SEMANTIC -->
+                <article class="model-card">
+                    <div class="model-number">02</div>
+
+                    <h3>Semantic Understanding</h3>
+
+                    <p class="model-subtitle">Looking beyond keywords</p>
+
+                    <p>
+                        Sentence Transformer embeddings represent movie
+                        descriptions as numerical vectors. This allows
+                        FilmFinder to identify similarities in plot
+                        meaning and themes, even when movies use
+                        different words.
+                    </p>
+
+                    <div class="model-detail">
+                        <span>Sentence Transformers</span>
+                        <span>5% of hybrid weighting</span>
+                    </div>
+                </article>
+
+
+                <!-- COLLABORATIVE -->
+                <article class="model-card">
+                    <div class="model-number">03</div>
+
+                    <h3>Collaborative Filtering</h3>
+
+                    <p class="model-subtitle">Learning from rating patterns</p>
+
+                    <p>
+                        By examining how users with similar rating
+                        patterns evaluate movies, FilmFinder can identify
+                        films that someone may enjoy based on the
+                        preferences of other viewers.
+                    </p>
+
+                    <div class="model-detail">
+                        <span>User Similarity</span>
+                        <span>70% of hybrid weighting</span>
+                    </div>
+                </article>
+
+            </div>
+
+
+            <!-- HYBRID MODEL -->
+            <div class="hybrid-explanation">
+
+                <div class="hybrid-text">
+                    <p class="section-eyebrow">THE HYBRID APPROACH</p>
+
+                    <h3>Combining different perspectives into one result.</h3>
+
+                    <p>
+                        Each method produces its own ranking of potential
+                        recommendations. FilmFinder combines these rankings
+                        using Reciprocal Rank Fusion, allowing movies that
+                        rank highly across multiple methods to receive
+                        stronger combined scores.
+                    </p>
+
+                    <p>
+                        The current optimized configuration gives the
+                        greatest weight to collaborative filtering while
+                        retaining content-based and semantic signals.
+                    </p>
+                </div>
+
+                <div class="hybrid-weights">
+                    <div class="weight-item">
+                        <div class="weight-label">
+                            <span>Collaborative Filtering</span>
+                            <strong>70%</strong>
+                        </div>
+                        <div class="weight-bar">
+                            <div class="weight-fill collaborative-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="weight-item">
+                        <div class="weight-label">
+                            <span>Content-Based Filtering</span>
+                            <strong>25%</strong>
+                        </div>
+                        <div class="weight-bar">
+                            <div class="weight-fill content-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="weight-item">
+                        <div class="weight-label">
+                            <span>Semantic Understanding</span>
+                            <strong>5%</strong>
+                        </div>
+                        <div class="weight-bar">
+                            <div class="weight-fill semantic-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENGINEERING AND OPTIMIZATION -->
+        <section class="engineering-section" id="engineering">
+
+            <div class="about-section-heading">
+                <p class="section-eyebrow">ENGINEERING & OPTIMIZATION</p>
+
+                <h2>
+                    Built through
+                    <span>testing, not guesswork.</span>
+                </h2>
+
+                <p>
+                    Developing a recommendation system involves more
+                    than combining algorithms. FilmFinder's models were
+                    evaluated across different configurations to identify
+                    approaches that produced more relevant recommendations.
+                </p>
+            </div>
+
+
+            <!-- EXPERIMENT HIGHLIGHTS -->
+            <div class="experiment-stats">
+
+                <div class="experiment-stat">
+                    <strong>232</strong>
+                    <span>Hybrid configurations evaluated</span>
+                </div>
+
+                <div class="experiment-stat">
+                    <strong>6</strong>
+                    <span>Collaborative neighbor configurations tested</span>
+                </div>
+
+                <div class="experiment-stat">
+                    <strong>100</strong>
+                    <span>Sampled users in hybrid evaluation</span>
+                </div>
+
+            </div>
+
+
+            <!-- HYBRID EVALUATION -->
+            <div class="experiment-block">
+
+                <div class="experiment-copy">
+                    <p class="section-eyebrow">EXPERIMENT 01</p>
+
+                    <h3>Optimizing the hybrid recommendation model</h3>
+
+                    <p>
+                        Different combinations of content-based,
+                        semantic, and collaborative recommendation
+                        weights were evaluated. The configuration
+                        producing the strongest validation NDCG@10
+                        was selected for final testing.
+                    </p>
+
+                    <p>
+                        On the held-out test sample, the optimized
+                        hybrid achieved a 0.0833 NDCG@10, compared
+                        with 0.0757 for collaborative filtering alone.
+                    </p>
+                </div>
+
+                <div class="experiment-result">
+                    <span class="result-label">RELATIVE IMPROVEMENT</span>
+                    <strong>+10.0%</strong>
+                    <span class="result-description">
+                        NDCG@10 compared with collaborative filtering
+                    </span>
+
+                    <div class="result-comparison">
+                        <div>
+                            <span>Hybrid</span>
+                            <strong>0.0833</strong>
+                        </div>
+                        <div>
+                            <span>Collaborative</span>
+                            <strong>0.0757</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- COLLABORATIVE EVALUATION -->
+            <div class="experiment-block">
+
+                <div class="experiment-copy">
+                    <p class="section-eyebrow">EXPERIMENT 02</p>
+
+                    <h3>Improving rating prediction accuracy</h3>
+
+                    <p>
+                        The collaborative filtering model was tested
+                        with six different neighbor counts. The
+                        configuration using 50 neighbors produced
+                        the lowest validation mean absolute error.
+                    </p>
+
+                    <p>
+                        On its separate held-out test set, the model
+                        reduced prediction error compared with a
+                        baseline that simply predicts each user's
+                        average rating.
+                    </p>
+                </div>
+
+                <div class="experiment-result">
+                    <span class="result-label">LOWER TEST MAE</span>
+                    <strong>7.95%</strong>
+                    <span class="result-description">
+                        Reduction compared with the user-average baseline
+                    </span>
+
+                    <div class="result-comparison">
+                        <div>
+                            <span>Collaborative</span>
+                            <strong>0.683</strong>
+                        </div>
+                        <div>
+                            <span>Baseline</span>
+                            <strong>0.742</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- EVALUATION NOTE -->
+            <p class="evaluation-note">
+                Results are from separate MovieLens-based evaluation
+                experiments using held-out data. Hybrid recommendation
+                metrics and rating prediction metrics measure different
+                aspects of model performance and should not be compared
+                directly.
+            </p>
+
+        </section>
+
+
+        <!-- TECHNOLOGY -->
+        <section class="technology-section">
+
+            <div class="about-section-heading">
+                <p class="section-eyebrow">UNDER THE HOOD</p>
+                <h2>Technology behind FilmFinder.</h2>
+            </div>
+
+            <div class="technology-grid">
+
+                <div class="technology-item">
+                    <h3>Python</h3>
+                    <p>Core recommendation logic and data processing.</p>
+                </div>
+
+                <div class="technology-item">
+                    <h3>Flask</h3>
+                    <p>Backend framework and API endpoints.</p>
+                </div>
+
+                <div class="technology-item">
+                    <h3>Scikit-learn</h3>
+                    <p>TF-IDF, similarity calculations, and evaluation.</p>
+                </div>
+
+                <div class="technology-item">
+                    <h3>Sentence Transformers</h3>
+                    <p>Semantic representations of movie descriptions.</p>
+                </div>
+
+                <div class="technology-item">
+                    <h3>NumPy & Pandas</h3>
+                    <p>Numerical computation and dataset processing.</p>
+                </div>
+
+                <div class="technology-item">
+                    <h3>HTML, CSS & JavaScript</h3>
+                    <p>The interface and interactive discovery experience.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CREDITS -->
+        <section class="credits-section">
+
+            <div class="about-section-heading">
+                <p class="section-eyebrow">ACKNOWLEDGMENTS</p>
+                <h2>Built with the help of open tools and data.</h2>
+
+                <p>
+                    FilmFinder is an independent student project.
+                    Its development builds on existing datasets,
+                    software libraries, and machine learning tools.
+                </p>
+            </div>
+
+            <p>
+                Dataset and software acknowledgments, licensing
+                information, and applicable attribution notices
+                are maintained in the project's credits.
+            </p>
+
+        </section>
+
+
+        <!-- FINAL CTA -->
+        <section class="about-cta">
+            <p class="section-eyebrow">YOUR NEXT FAVORITE FILM</p>
+
+            <h2>Ready to discover something new?</h2>
+
+            <p>
+                Tell FilmFinder what you enjoy and explore
+                recommendations built around your interests.
+            </p>
+
+            <a href="/discover" class="primary-button">
+                Start Discovering
+            </a>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 FilmFinder. An independent student project.</p>
+    </footer>
+
+</body>
+</html>

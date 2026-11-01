@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FilmFinder | Discover Your Next Favorite</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/discover">Discover</a>
+            <a href="/my-movies">My Movies</a>
+            <a href="/about">About</a>
+        </nav>
+
+        <a href="/discover" class="nav-button">Get Started</a>
+    </header>
+
+
+    <!-- Hero Section -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    YOUR PERSONAL MOVIE DISCOVERY ENGINE
+                </p>
+
+                <h1>
+                    Find your next
+                    <span>favorite film.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover movies that match your taste.
+                    Explore new stories, revisit old favorites,
+                    and find something worth watching.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/discover" class="primary-button">
+                        Start Discovering
+                        <span>→</span>
+                    </a>
+
+                    <a href="#popular-movies" class="secondary-button">
+                        Explore Movies
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-decoration">
+                <div class="glow-circle"></div>
+                <div class="hero-orbit"></div>
+                <span class="decoration-text">FF / 001</span>
+            </div>
+
+        </section>
+
+        <!-- Popular Movies Section -->
+        <section class="popular-section" id="popular-movies">
+
+            <div class="section-heading">
+                <p class="eyebrow">FIND SOMETHING TO WATCH</p>
+                <h2>Popular Movies</h2>
+                <p>Explore some of the movies people are watching and rating.</p>
+            </div>
+
+            <div class="popular-movies-grid" id="home-popular-grid">
+                <!-- Movies will be loaded here -->
+            </div>
+
+        </section>
+       
+        <!-- Movie Details Modal -->
+        <div class="movie-modal" id="movie-modal" aria-hidden="true">
+
+            <div class="movie-modal-content" role="dialog" aria-modal="true"
+                aria-labelledby="modal-movie-title">
+
+                <button class="modal-close" id="modal-close" aria-label="Close">
+                    &times;
+                </button>
+
+                <p class="eyebrow">MOVIE DETAILS</p>
+
+                <h2 id="modal-movie-title"></h2>
+
+                <p class="modal-year" id="modal-movie-year"></p>
+
+                <p class="modal-genres" id="modal-movie-genres"></p>
+
+                <p class="modal-description" id="modal-movie-overview"></p>
+
+                <button class="primary-button" id="find-similar-button">
+                    Find Similar Movies →
+                </button>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="/" class="logo">
+                FILM<span>FINDER</span>
+            </a>
+
+            <nav class="footer-links">
+                <a href="/">Home</a>
+                <a href="/discover">Discover</a>
+                <a href="/my-movies">My Movies</a>
+                <a href="/about">About</a>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            <p>A student-built movie discovery project.</p>
+            <p>© 2026 FilmFinder</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

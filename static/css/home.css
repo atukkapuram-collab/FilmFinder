@@ -1,0 +1,360 @@
+
+/* ========================================
+   HERO SECTION
+======================================== */
+
+.hero {
+    min-height: 650px;
+    padding: 100px 9%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow {
+    color: #8299A9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom:15px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1.08;
+    letter-spacing: -3px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #8299A9;
+}
+
+.hero-description {
+    max-width: 470px;
+    color: #AAB6BF;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+
+/* ========================================
+   HERO BUTTONS
+======================================== */
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.primary-button {
+    padding: 15px 23px;
+    background: #506A7D;
+    border-radius: 7px;
+    color: #111519;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.primary-button:hover {
+    background: #8299A9;
+    transform: translateY(-2px);
+}
+
+.primary-button span {
+    margin-left: 12px;
+}
+
+.secondary-button {
+    padding: 15px 23px;
+    border: 1px solid rgba(130, 153, 169, 0.2);
+    border-radius: 7px;
+    color: #8299A9;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.secondary-button:hover {
+    border-color: #506A7D;
+    color: #EEF0F2;
+}
+
+
+/* ========================================
+   DECORATIVE ELEMENTS
+======================================== */
+
+.hero-decoration {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.glow-circle {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    top: 70px;
+    left: 70px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(80, 106, 125, 0.12) 0%,
+        rgba(80, 106, 125, 0.04) 45%,
+        transparent 70%
+    );
+}
+
+.hero-orbit {
+    position: absolute;
+    width: 390px;
+    height: 390px;
+    top: 55px;
+    left: 55px;
+    border: 1px solid rgba(130, 153, 169, 0.12);
+    border-radius: 50%;
+}
+
+.decoration-text {
+    position: absolute;
+    bottom: 35px;
+    right: 20px;
+    color: rgba(130, 153, 169, 0.5);
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .hero {
+        padding: 90px 7%;
+    }
+
+    .hero-decoration {
+        right: -200px;
+        opacity: 0.6;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 70px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 600px;
+        padding: 80px 7%;
+    }
+
+    .hero h1 {
+        font-size: 49px;
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero-decoration {
+        right: -300px;
+        opacity: 0.35;
+    }
+}
+
+/* ========================================
+   POPULAR MOVIES SECTION
+======================================== */
+
+.popular-section {
+    padding: 90px 8%;
+    background: #111519;
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    color: #EEF0F2;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.section-heading > p:last-child {
+    color: #AAB6BF;
+    font-size: 15px;
+}
+
+.popular-movies-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.popular-movies-grid .movie-card {
+    cursor: pointer;
+    min-width: 0;
+    transition: transform 0.2s ease;
+}
+
+.popular-movies-grid .movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.popular-movies-grid .poster-placeholder {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+}
+
+.popular-movies-grid .movie-card h4 {
+    color: #EEF0F2;
+    font-size: 14px;
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+    .popular-movies-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .popular-section {
+        padding: 65px 7%;
+    }
+
+    .popular-movies-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+}
+
+/* ========================================
+   MOVIE DETAILS MODAL
+======================================== */
+
+.movie-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.movie-modal.active {
+    display: flex;
+}
+
+.movie-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    background: #1B2228;
+    border: 1px solid rgba(130, 153, 169, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+    animation: modal-appear 0.2s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #AAB6BF;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #EEF0F2;
+}
+
+.movie-modal-content h2 {
+    color: #EEF0F2;
+    font-size: 28px;
+    margin: 12px 0;
+}
+
+.modal-genres {
+    color: #8299A9;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.modal-description {
+    color: #AAB6BF;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+#find-similar-button {
+    cursor: pointer;
+    border: none;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-modal-content {
+        padding: 32px 24px;
+    }
+}

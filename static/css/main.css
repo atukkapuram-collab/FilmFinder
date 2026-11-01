@@ -1,0 +1,189 @@
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #111519;
+    color: #EEF0F2;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.navbar {
+    height: 84px;
+    padding: 0 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(130, 153, 169, 0.12);
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #8299A9;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+.nav-links a {
+    color: #AAB6BF;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #EEF0F2;
+}
+
+.nav-button {
+    padding: 11px 20px;
+    border: 1px solid rgba(80, 106, 125, 0.6);
+    border-radius: 7px;
+    color: #8299A9;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.nav-button:hover {
+    background: rgba(80, 106, 125, 0.14);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    padding: 30px 9%;
+    border-top: 1px solid rgba(130, 153, 169, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer p {
+    color: #AAB6BF;
+    font-size: 12px;
+}
+
+/* FOOTER CONTENT */
+.footer-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.footer-links a {
+    color: #AAB6BF;
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #EEF0F2;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+}
+
+/* RESPONSIVE FOOTER */
+@media (max-width: 700px) {
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+/* Shared movie poster placeholder */
+.poster-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        145deg,
+        #29343D 0%,
+        #202A32 50%,
+        #151B20 100%
+    );
+    border: 1px solid rgba(130, 153, 169, 0.14);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    /* Very subtle outer glow */
+    box-shadow: 0 0 3px rgba(80, 106, 125, 0.08);
+}
+
+.poster-placeholder:hover {
+    /* Very subtle outer glow */
+    box-shadow: 0 0 3px rgba(80, 106, 125, 0.08);
+}
+
+.poster-placeholder::after {
+    content: "✦";
+    color: #8299A9;
+    font-size: 34px;
+    text-shadow:
+        0 0 5px rgba(130, 153, 169, 0.3),
+        0 0 12px rgba(130, 153, 169, 0.15);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

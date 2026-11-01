@@ -1,0 +1,537 @@
+
+/* ========================================
+   MY MOVIES PAGE
+======================================== */
+
+.my-movies-page {
+    padding: 65px 9%;
+}
+
+
+/* ========================================
+   COLLECTION HEADER
+======================================== */
+
+.collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    margin-bottom: 45px;
+}
+
+.collection-header > div {
+    max-width: 650px;
+}
+
+.collection-header > div > p:first-child {
+    color: #8299A9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.collection-header h1 {
+    font-size: clamp(36px, 4vw, 54px);
+    letter-spacing: -2px;
+    margin-bottom: 15px;
+}
+
+.collection-header h1 span {
+    color: #8299A9;
+}
+
+.collection-header > div > p:last-child {
+    color: #AAB6BF;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+
+/* ========================================
+   COLLECTION STATISTICS
+======================================== */
+
+.collection-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 75px;
+}
+
+.stat-card {
+    padding: 23px;
+    background: #1B2228;
+    border: 1px solid rgba(130, 153, 169, 0.16);
+    border-radius: 10px;
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(130, 153, 169, 0.4);
+    transform: translateY(-3px);
+}
+
+.stat-label {
+    color: #AAB6BF;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.stat-card h2 {
+    color: #8299A9;
+    font-size: 34px;
+    letter-spacing: -1px;
+    margin-bottom: 7px;
+}
+
+.stat-description {
+    color: #AAB6BF;
+    font-size: 11px;
+}
+
+
+/* ========================================
+   COLLECTION SECTION
+======================================== */
+
+.collection-section {
+    margin-bottom: 65px;
+}
+
+.collection-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.collection-heading h2 {
+    font-size: 29px;
+    letter-spacing: -1px;
+}
+
+
+/* ========================================
+   COLLECTION TABS
+======================================== */
+
+.collection-tabs {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 40px;
+}
+
+.collection-tab {
+    position: relative;
+    padding: 0 2px 15px;
+    color: #AAB6BF;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.collection-tab:hover {
+    color: #EEF0F2;
+}
+
+.collection-tab.active {
+    color: #8299A9;
+}
+
+.collection-tab.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: #8299A9;
+    border-radius: 2px;
+}
+
+
+/* ========================================
+   MOVIE COLLECTIONS
+======================================== */
+
+.movie-collection {
+    margin-bottom: 55px;
+    scroll-margin-top: 30px;
+}
+
+.collection-subheading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.collection-subheading h3 {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.collection-subheading span {
+    color: #AAB6BF;
+    font-size: 12px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+}
+
+
+/* ========================================
+   EMPTY COLLECTION STATES
+======================================== */
+
+.collection-empty {
+    grid-column: 1 / -1;
+    min-height: 260px;
+    padding: 35px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #1B2228;
+    border: 1px dashed rgba(130, 153, 169, 0.25);
+    border-radius: 10px;
+}
+
+.empty-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    background: rgba(80, 106, 125, 0.12);
+    border-radius: 50%;
+    color: #8299A9;
+    font-size: 25px;
+}
+
+.collection-empty h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.collection-empty p {
+    max-width: 390px;
+    color: #AAB6BF;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+
+/* ========================================
+   FUTURE MOVIE CARDS
+======================================== */
+
+.collection-movie-card {
+    background: #1B2228;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    overflow: hidden;
+    transition: transform 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.collection-movie-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(130, 153, 169, 0.5);
+}
+
+.collection-movie-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.collection-movie-info {
+    padding: 13px;
+}
+
+.collection-movie-info h4 {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 7px;
+}
+
+.collection-movie-info p {
+    color: #AAB6BF;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.collection-movie-rating {
+    color: #8299A9 !important;
+    margin-top: 7px;
+}
+
+
+/* ========================================
+   LOCAL STORAGE NOTICE
+======================================== */
+
+.storage-notice {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 25px;
+    background: rgba(80, 106, 125, 0.07);
+    border: 1px solid rgba(130, 153, 169, 0.2);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.storage-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(80, 106, 125, 0.15);
+    border-radius: 8px;
+    color: #8299A9;
+    font-size: 21px;
+}
+
+.storage-text {
+    flex: 1;
+}
+
+.storage-text h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.storage-text p {
+    color: #AAB6BF;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.storage-status {
+    color: #8299A9;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .collection-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .my-movies-page {
+        padding: 55px 7%;
+    }
+
+    .collection-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .my-movies-page {
+        padding: 40px 6%;
+    }
+
+    .collection-header h1 {
+        font-size: 39px;
+        letter-spacing: -1.5px;
+    }
+
+    .collection-header > div > p:last-child {
+        font-size: 13px;
+    }
+
+    .collection-stats {
+        gap: 10px;
+        margin-bottom: 55px;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+    .stat-card h2 {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .collection-heading h2 {
+        font-size: 25px;
+    }
+
+    .collection-tabs {
+        gap: 22px;
+        overflow-x: auto;
+    }
+
+    .collection-tab {
+        white-space: nowrap;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .collection-empty {
+        padding: 30px 15px;
+    }
+
+    .storage-notice {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 18px;
+    }
+
+    .storage-status {
+        margin-left: 61px;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* ========================================
+   COLLECTION MOVIE CARD DETAILS
+======================================== */
+
+.collection-movie-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.collection-poster-placeholder {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-movie-info h3 {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 7px;
+}
+
+
+/* ========================================
+   COLLECTION ACTION BUTTONS
+======================================== */
+
+.collection-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.collection-action {
+    padding: 6px 9px;
+    border: 1px solid rgba(130, 153, 169, 0.25);
+    border-radius: 6px;
+    background: #111519;
+    color: #AAB6BF;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.collection-action:hover {
+    border-color: #506A7D;
+    color: #EEF0F2;
+}
+
+.collection-action.active {
+    background: rgba(80, 106, 125, 0.2);
+    border-color: #506A7D;
+    color: #8299A9;
+}
+
+
+/* ========================================
+   MOVIE RATING
+======================================== */
+
+.collection-movie-info .movie-rating {
+    margin-top: 12px;
+    padding: 7px;
+    width: 100%;
+    background: #111519;
+    color: #EEF0F2;
+    border: 1px solid rgba(130, 153, 169, 0.25);
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+
+/* ========================================
+   REMOVE MOVIE BUTTON
+======================================== */
+
+.remove-movie {
+    margin-top: 12px;
+    padding: 7px 9px;
+    background: transparent;
+    border: 1px solid rgba(220, 100, 120, 0.25);
+    border-radius: 5px;
+    color: #C98B9A;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.remove-movie:hover {
+    background: rgba(220, 100, 120, 0.1);
+}

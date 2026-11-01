@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discover | FilmFinder</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/discover.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/discover" class="active">Discover</a>
+            <a href="/my-movies">My Movies</a>
+            <a href="/about">About</a>
+        </nav>
+
+        <a href="/discover" class="nav-button">Get Started</a>
+    </header>
+
+
+    <main class="discover-page">
+
+        <!-- Page Introduction -->
+        <section class="discover-header">
+            <p class="eyebrow">YOUR PERSONAL MOVIE DISCOVERY ENGINE</p>
+
+            <h1>Let's find your next <span>favorite film.</span></h1>
+
+            <p>
+                Tell us what you enjoy watching, and we'll find
+                movies that match your taste.
+            </p>
+        </section>
+
+
+        <!-- Movie Discovery -->
+        <section class="movie-discovery">
+
+            <div class="discovery-main">
+
+                <!-- Movie Search -->
+                <div class="search-section">
+                    <h2>Tell us what you like</h2>
+
+                    <p>
+                        Search for movies you've watched or explore
+                        some popular picks.
+                    </p>
+
+                    <div class="search-container">
+                        <input
+                            type="text"
+                            id="movie-search"
+                            placeholder="Search for movies..."
+                        >
+
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+
+
+                <!-- Popular Movies -->
+                <div class="popular-section">
+                    <h3>Popular Picks</h3>
+
+                    <div class="popular-movies" id="popular-movies">
+                        <!-- Movie suggestions will appear here -->
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Selected Movies Panel -->
+            <aside class="selected-panel">
+
+                <h2>Your Selections</h2>
+
+                <p id="selection-count">0 movies selected</p>
+
+                <div id="selected-movies">
+                    <!-- Selected movies and rating controls will appear here -->
+                </div>
+
+                <p class="selection-instruction">
+                    Select and rate at least 5 movies to get started.
+                </p>
+
+            </aside>
+
+        </section>
+
+
+        <!-- Optional Preferences -->
+        <section class="preferences-section">
+
+            <h2>Fine-tune your recommendations</h2>
+
+            <p>
+                Optional preferences to help personalize your results.
+            </p>
+
+            <div class="preference-controls">
+
+                <div class="preference-group">
+                    <label for="genre-preference">Preferred Genre</label>
+
+                    <select id="genre-preference">
+                        <option value="any">Any Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Animation">Animation</option>
+                        <option value="Children">Children</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Documentary">Documentary</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Film-Noir">Film-Noir</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Musical">Musical</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="War">War</option>
+                        <option value="Western">Western</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Generate Recommendations -->
+        <section class="generate-section">
+
+            <button id="generate-button" disabled>
+                Generate Recommendations →
+            </button>
+
+        </section>
+
+
+        <!-- Recommendation Results -->
+        <section class="recommendations-section" id="recommendations">
+
+            <div class="recommendations-header">
+                <div>
+                    <p class="eyebrow">PERSONALIZED FOR YOU</p>
+                    <h2>Picked for you.</h2>
+                </div>
+
+                <button id="refresh-recommendations">
+                    Get More Recommendations
+                </button>
+            </div>
+
+            <div class="recommendation-grid" id="recommendation-grid">
+                <!-- Recommendation cards will appear here -->
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
+
+        <p>Discover your next favorite film.</p>
+
+        <p>FilmFinder © 2026</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

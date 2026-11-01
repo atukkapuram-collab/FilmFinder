@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Movies | FilmFinder</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/my-movies.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/discover">Discover</a>
+            <a href="/my-movies" class="active">My Movies</a>
+            <a href="/about">About</a>
+        </nav>
+
+        <a href="/discover" class="nav-button">Get Started</a>
+    </header>
+
+
+    <main class="my-movies-page">
+
+        <!-- Page Introduction -->
+        <section class="collection-header">
+
+            <div>
+                <p class="eyebrow">YOUR PERSONAL COLLECTION</p>
+
+                <h1>
+                    Your Movie <span>Collection.</span>
+                </h1>
+
+                <p>
+                    Keep track of the movies you've watched,
+                    save the ones you want to see, and collect
+                    your all-time favorites.
+                </p>
+            </div>
+
+            <a href="/discover" class="primary-button">
+                Discover Movies <span>→</span>
+            </a>
+
+        </section>
+
+
+        <!-- Collection Statistics -->
+        <section class="collection-stats">
+
+            <div class="stat-card">
+                <p class="stat-label">MOVIES WATCHED</p>
+                <h2 id="watched-count">0</h2>
+                <p class="stat-description">Movies you've rated</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">WATCHLIST</p>
+                <h2 id="watchlist-count">0</h2>
+                <p class="stat-description">Movies to watch next</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">FAVORITES</p>
+                <h2 id="favorites-count">0</h2>
+                <p class="stat-description">Your personal favorites</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">AVERAGE RATING</p>
+                <h2 id="average-rating">—</h2>
+                <p class="stat-description">Across your watched movies</p>
+            </div>
+
+        </section>
+
+
+        <!-- Collection Navigation -->
+        <section class="collection-section">
+
+            <div class="collection-heading">
+                <div>
+                    <p class="eyebrow">YOUR LIBRARY</p>
+                    <h2>All your movies.</h2>
+                </div>
+            </div>
+
+            <nav class="collection-tabs">
+                <a href="#watched" class="collection-tab active">
+                    Watched
+                </a>
+
+                <a href="#watchlist" class="collection-tab">
+                    Watchlist
+                </a>
+
+                <a href="#favorites" class="collection-tab">
+                    Favorites
+                </a>
+            </nav>
+
+
+            <!-- Watched Movies -->
+            <section class="movie-collection" id="watched">
+
+                <div class="collection-subheading">
+                    <h3>Watched Movies</h3>
+                    <span id="watched-section-count">0 movies</span>
+                </div>
+
+                <div class="movie-grid" id="watched-movies">
+
+                    <div class="collection-empty">
+                        <div class="empty-icon">▣</div>
+
+                        <h3>Your watched movies will appear here.</h3>
+
+                        <p>
+                            Once you start rating movies on Discover,
+                            they'll be added to your collection.
+                        </p>
+
+                        <a href="/discover" class="secondary-button">
+                            Find Movies
+                        </a>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Watchlist -->
+            <section class="movie-collection" id="watchlist">
+
+                <div class="collection-subheading">
+                    <h3>Your Watchlist</h3>
+                    <span id="watchlist-section-count">0 movies</span>
+                </div>
+
+                <div class="movie-grid" id="watchlist-movies">
+
+                    <div class="collection-empty">
+                        <div class="empty-icon">◷</div>
+
+                        <h3>Nothing on your watchlist yet.</h3>
+
+                        <p>
+                            Save movies you're interested in
+                            and keep track of what you want to watch.
+                        </p>
+
+                        <a href="/discover" class="secondary-button">
+                            Explore Movies
+                        </a>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Favorites -->
+            <section class="movie-collection" id="favorites">
+
+                <div class="collection-subheading">
+                    <h3>Your Favorites</h3>
+                    <span id="favorites-section-count">0 movies</span>
+                </div>
+
+                <div class="movie-grid" id="favorite-movies">
+
+                    <div class="collection-empty">
+                        <div class="empty-icon">♡</div>
+
+                        <h3>Your favorites will live here.</h3>
+
+                        <p>
+                            Mark the movies you love to build
+                            your own collection of favorites.
+                        </p>
+
+                        <a href="/discover" class="secondary-button">
+                            Discover Favorites
+                        </a>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- Local Storage Information -->
+        <section class="storage-notice">
+
+            <div class="storage-icon">⌘</div>
+
+            <div class="storage-text">
+                <h3>Your collection, saved locally.</h3>
+
+                <p>
+                    Your movies and ratings are saved on this device
+                    in your browser. No account is required.
+                </p>
+            </div>
+
+            <span class="storage-status">LOCAL STORAGE</span>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
+
+        <p>Discover your next favorite film.</p>
+
+        <p>FilmFinder © 2026</p>
+
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
+
+</body>
+</html>
