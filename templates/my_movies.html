@@ -90,10 +90,98 @@
                 <p class="stat-description">Across your watched movies</p>
             </div>
 
+
         </section>
 
+        <!-- Personalized Recommendations -->
+        <section class="recommendation-section" id="collection-recommendations">
+
+            <div class="recommendation-heading">
+                <p class="eyebrow">PERSONALIZED DISCOVERY</p>
+
+                <h2>Find your next <span>favorite.</span></h2>
+
+                <p>
+                    Use your movie ratings to discover films
+                    that match your taste.
+                </p>
+            </div>
+
+            <div class="recommendation-options">
+
+                <!-- Recommendations Based on Entire Collection -->
+                <div class="recommendation-option">
+                    <h3>Based on My Collection</h3>
+
+                    <p>
+                        Use all your rated watched movies
+                        to generate personalized recommendations.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="recommend-all-button"
+                    >
+                        Recommend Movies <span>→</span>
+                    </button>
+                </div>
+
+
+                <!-- Recommendations Based on Selected Movies -->
+                <div class="recommendation-option">
+                    <h3>Based on Selected Movies</h3>
+
+                    <p>
+                        Choose specific movies from your watched
+                        collection to customize your recommendations.
+                    </p>
+
+                    <div class="selection-management">
+                        <button type="button" class="secondary-button" id="select-recommendation-movies">
+                            Choose Movies
+                        </button>
+
+                        <button type="button" class="secondary-button" id="clear-selected-movies">
+                            Clear All
+                        </button>
+
+                        <button type="button" class="secondary-button" id="undo-selection" disabled>
+                            Undo
+                        </button>
+                    </div>
+
+                    <p 
+                        class="selection-status" 
+                        id="recommendation-selection-status" 
+                        aria-live="polite"
+                    >
+                        No movies selected.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="recommend-selected-button"
+                        disabled
+                    >
+                        Recommend Based on Selection <span>→</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Recommendation Results -->
+            <div
+                class="collection-recommendation-results"
+                id="collection-recommendation-results"
+                aria-live="polite"
+            ></div>
+
+        </section>
 
         <!-- Collection Navigation -->
+
         <section class="collection-section">
 
             <div class="collection-heading">
@@ -245,6 +333,7 @@
     </footer>
 
     <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/my-movies.js') }}"></script>
 
 </body>
 </html>

@@ -235,6 +235,12 @@
     margin-bottom: 20px;
 }
 
+.collection-empty p {
+    text-align: center;
+    width: 100%;
+    max-width: 390px;
+}
+
 
 /* ========================================
    FUTURE MOVIE CARDS
@@ -534,4 +540,240 @@
 
 .remove-movie:hover {
     background: rgba(220, 100, 120, 0.1);
+}
+
+
+/* ========================================
+   PERSONALIZED RECOMMENDATIONS
+======================================== */
+
+.recommendation-section {
+    margin-bottom: 75px;
+    padding: 32px;
+    background: #1B2228;
+    border: 1px solid rgba(130, 153, 169, 0.16);
+    border-radius: 10px;
+}
+
+.recommendation-heading {
+    margin-bottom: 28px;
+}
+
+.recommendation-heading .eyebrow {
+    color: #8299A9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.recommendation-heading h2 {
+    font-size: 29px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.recommendation-heading h2 span {
+    color: #8299A9;
+}
+
+.recommendation-heading > p:last-child {
+    color: #AAB6BF;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.recommendation-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.recommendation-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 23px;
+    background: #111519;
+    border: 1px solid rgba(130, 153, 169, 0.16);
+    border-radius: 9px;
+}
+
+.recommendation-option h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.recommendation-option > p {
+    color: #AAB6BF;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Recommendation buttons */
+.recommendation-option .primary-button {
+    margin-top: auto;
+    padding: 11px 16px;
+    background: #506A7D;
+    border: 1px solid #506A7D;
+    border-radius: 7px;
+    color: #111519;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.recommendation-option .primary-button:hover {
+    background: #8299A9;
+    border-color: #8299A9;
+    transform: translateY(-2px);
+}
+
+.recommendation-option .secondary-button {
+    margin-top: auto;
+    margin-bottom: 12px;
+    padding: 11px 16px;
+    background: transparent;
+    border: 1px solid rgba(130, 153, 169, 0.2);
+    border-radius: 7px;
+    color: #8299A9;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.recommendation-option .secondary-button:hover {
+    border-color: #506A7D;
+    color: #EEF0F2;
+}
+
+.selection-status {
+    color: #8299A9 !important;
+    font-size: 11px !important;
+    margin-bottom: 15px !important;
+}
+
+#recommend-selected-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.collection-recommendation-results {
+    margin-top: 30px;
+}
+
+.collection-recommendation-results:empty {
+    display: none;
+}
+
+
+/* ========================================
+   RECOMMENDATION RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 800px) {
+
+    .recommendation-section {
+        padding: 25px;
+    }
+
+    .recommendation-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .recommendation-section {
+        padding: 20px;
+    }
+
+    .recommendation-heading h2 {
+        font-size: 25px;
+    }
+
+    .recommendation-option {
+        padding: 18px;
+    }
+}
+
+.recommendation-movie-selection {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    color: #AAB6BF;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.recommendation-selection-mode .recommendation-movie-selection {
+    display: flex;
+}
+
+.recommendation-movie-checkbox {
+    accent-color: #8299A9;
+    cursor: pointer;
+}
+
+/* Personalized recommendation cards */
+.collection-recommendation-results {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+}
+
+.collection-recommendation-results:empty {
+    display: none;
+}
+
+.collection-recommendation-results > h3,
+.collection-recommendation-results > p {
+    grid-column: 1 / -1;
+}
+
+.collection-recommendation-results .recommendation-card {
+    background: #1B2228;
+    border: 1px solid rgba(130, 153, 169, 0.10);
+    border-radius: 9px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.collection-recommendation-results .recommendation-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(80, 106, 125, 0.5);
+}
+
+.collection-recommendation-results .recommendation-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-recommendation-results .recommendation-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collection-recommendation-results .recommendation-info {
+    padding: 13px;
+}
+
+.collection-recommendation-results .recommendation-info h3 {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.collection-recommendation-results .recommendation-info p {
+    color: #AAB6BF;
+    font-size: 11px;
+    line-height: 1.5;
 }

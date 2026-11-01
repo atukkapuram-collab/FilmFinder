@@ -223,6 +223,11 @@ function renderCollectionPage() {
     renderMovieSection(watchedContainer, watchedMovies, "watched");
     renderMovieSection(watchlistContainer, watchlistMovies, "watchlist");
     renderMovieSection(favoritesContainer, favoriteMovies, "favorite");
+    
+    // Notify other scripts that the collection display has been refreshed
+    window.dispatchEvent(
+        new CustomEvent("filmFinderCollectionRendered")
+    );
 }
 
 
@@ -244,7 +249,7 @@ function renderMovieSection(container, movies, category) {
         const emptyState = container.querySelector(".collection-empty");
 
         if (emptyState) {
-            emptyState.style.display = "block";
+            emptyState.style.display = "flex";
         }
 
         return;
@@ -323,6 +328,25 @@ function renderMovieSection(container, movies, category) {
             });
 
             info.appendChild(ratingSelect);
+            // Selection control for personalized recommendations
+            if (Number(movie.rating) > 0) {
+                const selectionLabel = document.createElement("label");
+                selectionLabel.className = "recommendation-movie-selection";
+
+                const selectionCheckbox = document.createElement("input");
+                selectionCheckbox.type = "checkbox";
+                selectionCheckbox.className = "recommendation-movie-checkbox";
+                selectionCheckbox.value = movie.movieId;
+                selectionCheckbox.dataset.movieId = movie.movieId;
+
+                const selectionText = document.createElement("span");
+                selectionText.textContent = "Use for recommendations";
+
+                selectionLabel.appendChild(selectionCheckbox);
+                selectionLabel.appendChild(selectionText);
+
+                info.appendChild(selectionLabel);
+            }
         }
 
         // Collection category buttons
