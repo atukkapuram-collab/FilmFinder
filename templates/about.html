@@ -12,19 +12,31 @@
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <a href="/" class="logo">FILM<span>FINDER</span></a>
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="/" class="logo">
+            FILM<span>FINDER</span>
+        </a>
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/discover">Discover</a>
-            <a href="/my-movies">My Movies</a>
-            <a href="/about" class="active">About</a>
+        <button class="menu-toggle" id="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-menu" id="nav-menu">
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/discover">Discover</a>
+                <a href="/my-movies">My Movies</a>
+                <a href="/about" class="active">About</a>
+            </nav>
+
+            <a href="/discover" class="nav-button">Get Started</a>
         </div>
-
-        <a href="/discover" class="nav-button">Get Started</a>
-    </nav>
+    </header>
 
 
     <main class="about-page">
@@ -453,6 +465,8 @@
     <footer class="footer">
         <p>© 2026 FilmFinder. An independent student project.</p>
     </footer>
+
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
 </body>
 </html>

@@ -26,14 +26,24 @@
             FILM<span>FINDER</span>
         </a>
 
-        <nav class="nav-links">
-            <a href="/">Home</a>
-            <a href="/discover">Discover</a>
-            <a href="/my-movies" class="active">My Movies</a>
-            <a href="/about">About</a>
-        </nav>
+        <button class="menu-toggle" id="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <a href="/discover" class="nav-button">Get Started</a>
+        <div class="nav-menu" id="nav-menu">
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/discover">Discover</a>
+                <a href="/my-movies" class="active">My Movies</a>
+                <a href="/about">About</a>
+            </nav>
+
+            <a href="/discover" class="nav-button">Get Started</a>
+        </div>
     </header>
 
 
@@ -56,9 +66,15 @@
                 </p>
             </div>
 
-            <a href="/discover" class="primary-button">
-                Discover Movies <span>→</span>
-            </a>
+            <div class="collection-header-actions">
+                <a href="/discover" class="primary-button">
+                    Discover Movies <span>→</span>
+                </a>
+
+                <button type="button" class="secondary-button" id="open-add-movie">
+                    + Add Movie
+                </button>
+            </div>
 
         </section>
 
@@ -316,6 +332,71 @@
 
         </section>
 
+        <!-- Add Movie Modal -->
+        <div class="add-movie-modal" id="add-movie-modal" aria-hidden="true">
+            <div class="add-movie-dialog" role="dialog" aria-modal="true" aria-labelledby="add-movie-title">
+
+                <button type="button" class="close-add-movie" id="close-add-movie" aria-label="Close">
+                    &times;
+                </button>
+
+                <p class="eyebrow">EXPAND YOUR COLLECTION</p>
+                <h2 id="add-movie-title">Add a <span>Movie.</span></h2>
+
+                <input
+                    type="search"
+                    id="add-movie-search"
+                    placeholder="Search movie titles..."
+                    autocomplete="off"
+                >
+
+                <div id="add-movie-results" aria-live="polite"></div>
+
+                <div id="add-movie-details" hidden>
+                    <h3 id="selected-movie-title"></h3>
+                    <p id="selected-movie-genres"></p>
+
+                    <p>Choose your categories:</p>
+
+                    <label>
+                        <input type="checkbox" id="add-movie-watched">
+                        Watched
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="add-movie-watchlist">
+                        Watchlist
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="add-movie-favorite">
+                        Favorites
+                    </label>
+
+                    <div id="add-movie-rating-container" hidden>
+                        <label for="add-movie-rating">Your rating</label>
+                        <select id="add-movie-rating">
+                            <option value="0">Not rated</option>
+                            <option value="0.5">0.5 / 5</option>
+                            <option value="1">1 / 5</option>
+                            <option value="1.5">1.5 / 5</option>
+                            <option value="2">2 / 5</option>
+                            <option value="2.5">2.5 / 5</option>
+                            <option value="3">3 / 5</option>
+                            <option value="3.5">3.5 / 5</option>
+                            <option value="4">4 / 5</option>
+                            <option value="4.5">4.5 / 5</option>
+                            <option value="5">5 / 5</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="primary-button" id="save-added-movie">
+                        Add to Collection
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </main>
 
 
@@ -334,6 +415,7 @@
 
     <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
     <script src="{{ url_for('static', filename='js/my-movies.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
 </body>
 </html>

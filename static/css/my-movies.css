@@ -247,17 +247,20 @@
 ======================================== */
 
 .collection-movie-card {
-    background: #1B2228;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 9px;
+    min-width: 0;
+    background: linear-gradient(145deg, #1F282F, #1B2228);
+    border: 1px solid rgba(130, 153, 169, 0.14);
+    border-radius: 10px;
     overflow: hidden;
     transition: transform 0.2s ease,
-                border-color 0.2s ease;
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
 .collection-movie-card:hover {
     transform: translateY(-4px);
     border-color: rgba(130, 153, 169, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .collection-movie-card img {
@@ -268,11 +271,14 @@
 }
 
 .collection-movie-info {
-    padding: 13px;
+    padding: 14px;
 }
 
+.collection-movie-info h3,
 .collection-movie-info h4 {
+    color: #EEF0F2;
     font-size: 13px;
+    font-weight: 600;
     line-height: 1.5;
     margin-bottom: 7px;
 }
@@ -280,14 +286,13 @@
 .collection-movie-info p {
     color: #AAB6BF;
     font-size: 11px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .collection-movie-rating {
     color: #8299A9 !important;
-    margin-top: 7px;
+    margin-top: 8px;
 }
-
 
 /* ========================================
    LOCAL STORAGE NOTICE
@@ -463,6 +468,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #29343D;
+    color: #8299A9;
 }
 
 .collection-movie-info h3 {
@@ -471,7 +478,6 @@
     margin-bottom: 7px;
 }
 
-
 /* ========================================
    COLLECTION ACTION BUTTONS
 ======================================== */
@@ -479,32 +485,36 @@
 .collection-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 7px;
+    margin-top: 13px;
 }
 
 .collection-action {
-    padding: 6px 9px;
-    border: 1px solid rgba(130, 153, 169, 0.25);
-    border-radius: 6px;
+    padding: 7px 10px;
     background: #111519;
-    color: #AAB6BF;
+    border: 1px solid rgba(130, 153, 169, 0.16);
+    border-radius: 6px;
+    color: #8F9DA7;
     font-size: 10px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
 }
 
 .collection-action:hover {
-    border-color: #506A7D;
-    color: #EEF0F2;
+    background: #222D35;
+    border-color: rgba(80, 106, 125, 0.5);
+    color: #C2CBD1;
 }
 
 .collection-action.active {
-    background: rgba(80, 106, 125, 0.2);
-    border-color: #506A7D;
-    color: #8299A9;
+    background: rgba(80, 106, 125, 0.13);
+    border-color: rgba(80, 106, 125, 0.55);
+    color: #AAB6BF;
+    font-weight: 600;
 }
-
 
 /* ========================================
    MOVIE RATING
@@ -512,15 +522,22 @@
 
 .collection-movie-info .movie-rating {
     margin-top: 12px;
-    padding: 7px;
+    padding: 8px 9px;
     width: 100%;
     background: #111519;
-    color: #EEF0F2;
-    border: 1px solid rgba(130, 153, 169, 0.25);
-    border-radius: 5px;
+    color: #AAB6BF;
+    border: 1px solid rgba(130, 153, 169, 0.16);
+    border-radius: 6px;
     font-size: 11px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
 }
 
+.collection-movie-info .movie-rating:hover,
+.collection-movie-info .movie-rating:focus {
+    border-color: rgba(80, 106, 125, 0.65);
+}
 
 /* ========================================
    REMOVE MOVIE BUTTON
@@ -528,20 +545,23 @@
 
 .remove-movie {
     margin-top: 12px;
-    padding: 7px 9px;
+    padding: 7px 10px;
     background: transparent;
-    border: 1px solid rgba(220, 100, 120, 0.25);
-    border-radius: 5px;
-    color: #C98B9A;
+    border: 1px solid rgba(180, 105, 120, 0.18);
+    border-radius: 6px;
+    color: #A9828D;
     font-size: 10px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
 }
 
 .remove-movie:hover {
-    background: rgba(220, 100, 120, 0.1);
+    background: rgba(180, 105, 120, 0.09);
+    border-color: rgba(180, 105, 120, 0.4);
+    color: #C99AA5;
 }
-
 
 /* ========================================
    PERSONALIZED RECOMMENDATIONS
@@ -776,4 +796,319 @@
     color: #AAB6BF;
     font-size: 11px;
     line-height: 1.5;
+}
+
+.collection-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+/* ========================================
+   ADD MOVIE MODAL
+======================================== */
+
+.add-movie-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 11, 14, 0.82);
+    backdrop-filter: blur(5px);
+}
+
+.add-movie-modal.is-open {
+    display: flex;
+}
+
+.add-movie-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 38px;
+    background: linear-gradient(145deg, #202930, #151B20);
+    border: 1px solid rgba(130, 153, 169, 0.22);
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.close-add-movie {
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #29343D;
+    border: 1px solid rgba(130, 153, 169, 0.15);
+    border-radius: 50%;
+    color: #AAB6BF;
+    font-size: 23px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.close-add-movie:hover {
+    background: #506A7D;
+    color: #EEF0F2;
+}
+
+.add-movie-dialog > .eyebrow {
+    color: #8299A9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.add-movie-dialog h2 {
+    color: #EEF0F2;
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.add-movie-dialog h2 span {
+    color: #8299A9;
+}
+
+/* Search bar */
+
+#add-movie-search {
+    width: 100%;
+    padding: 15px 17px;
+    background: #111519;
+    border: 1px solid #343D45;
+    border-radius: 8px;
+    color: #EEF0F2;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#add-movie-search::placeholder {
+    color: #77848E;
+}
+
+#add-movie-search:focus {
+    border-color: #8299A9;
+}
+
+/* Search results */
+
+#add-movie-results {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+#add-movie-results > p {
+    color: #AAB6BF;
+    font-size: 13px;
+    padding: 10px 2px;
+}
+
+.add-movie-result {
+    display: block;
+    width: 100%;
+    padding: 15px 17px;
+    background: #29343D;
+    border: 1px solid rgba(130, 153, 169, 0.10);
+    border-radius: 8px;
+    color: #EEF0F2;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.add-movie-result:hover {
+    background: #34434E;
+    border-color: #8299A9;
+}
+
+.add-movie-result strong {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.add-movie-result p {
+    margin-top: 6px;
+    color: #AAB6BF;
+    font-size: 12px;
+}
+
+/* Selected movie details */
+
+#add-movie-details {
+    margin-top: 25px;
+    padding-top: 23px;
+    border-top: 1px solid #343D45;
+}
+
+#add-movie-details h3 {
+    color: #EEF0F2;
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+#add-movie-details > p {
+    color: #AAB6BF;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* Category options */
+
+#add-movie-details > label {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 10px 0;
+    padding: 13px 15px;
+    background: #29343D;
+    border: 1px solid rgba(130, 153, 169, 0.12);
+    border-radius: 8px;
+    color: #EEF0F2;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#add-movie-details > label:hover {
+    background: #34434E;
+    border-color: rgba(130, 153, 169, 0.4);
+}
+
+#add-movie-details input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #8299A9;
+    cursor: pointer;
+}
+
+/* Rating */
+
+#add-movie-rating-container {
+    margin-top: 20px;
+}
+
+#add-movie-rating-container label {
+    display: block;
+    color: #AAB6BF;
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+#add-movie-rating {
+    width: 100%;
+    padding: 13px;
+    background: #111519;
+    border: 1px solid #343D45;
+    border-radius: 8px;
+    color: #EEF0F2;
+    font-size: 13px;
+    outline: none;
+}
+
+#add-movie-rating:focus {
+    border-color: #8299A9;
+}
+
+/* Save button */
+
+#save-added-movie {
+    width: 100%;
+    margin-top: 23px;
+    padding: 14px;
+    background: #506A7D;
+    border: 1px solid #506A7D;
+    border-radius: 8px;
+    color: #EEF0F2;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#save-added-movie:hover {
+    background: #8299A9;
+    border-color: #8299A9;
+    color: #111519;
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+    .add-movie-dialog {
+        padding: 30px 22px;
+    }
+
+    .add-movie-dialog h2 {
+        font-size: 26px;
+    }
+
+    .collection-header-actions {
+        flex-wrap: wrap;
+    }
+}
+
+#open-add-movie {
+    padding: 11px 20px;
+    background: transparent;
+    border: 1px solid #506A7D;
+    border-radius: 7px;
+    color: #8299A9;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#open-add-movie:hover {
+    background: #506A7D;
+    border-color: #506A7D;
+    color: #EEF0F2;
+}
+
+/* Add Movie success notification */
+
+.add-movie-toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1100;
+    padding: 15px 22px;
+    background: #29343D;
+    border: 1px solid rgba(130, 153, 169, 0.4);
+    border-left: 4px solid #8299A9;
+    border-radius: 8px;
+    color: #EEF0F2;
+    font-size: 13px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+.add-movie-toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .add-movie-toast {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+    }
 }

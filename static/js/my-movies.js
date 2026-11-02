@@ -513,4 +513,251 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Restore selection mode and checkbox states
     setSelectionMode(selectedMovieIds.size > 0);
+
+    // ========================================
+    // ADD MOVIE MODAL
+    // ========================================
+
+    const addMovieModal = document.getElementById("add-movie-modal");
+    const openAddMovieButton = document.getElementById("open-add-movie");
+    const closeAddMovieButton = document.getElementById("close-add-movie");
+    const addMovieSearch = document.getElementById("add-movie-search");
+    const addMovieResults = document.getElementById("add-movie-results");
+    const addMovieDetails = document.getElementById("add-movie-details");
+
+    const selectedMovieTitle = document.getElementById("selected-movie-title");
+    const selectedMovieGenres = document.getElementById("selected-movie-genres");
+
+    const addMovieWatched = document.getElementById("add-movie-watched");
+    const addMovieWatchlist = document.getElementById("add-movie-watchlist");
+    const addMovieFavorite = document.getElementById("add-movie-favorite");
+
+    const addMovieRatingContainer = document.getElementById("add-movie-rating-container");
+    const addMovieRating = document.getElementById("add-movie-rating");
+    const saveAddedMovieButton = document.getElementById("save-added-movie");
+
+    let selectedMovie = null;
+    let searchRequestSequence = 0;
+    let searchTimeout = null;
+
+    function openAddMovieModal() {
+        addMovieModal.classList.add("is-open");
+        addMovieModal.setAttribute("aria-hidden", "false");
+        addMovieSearch.focus();
+    }
+
+    function closeAddMovieModal() {
+        addMovieModal.classList.remove("is-open");
+        addMovieModal.setAttribute("aria-hidden", "true");
+
+        selectedMovie = null;
+        addMovieSearch.value = "";
+        addMovieResults.innerHTML = "";
+        addMovieDetails.hidden = true;
+
+        searchRequestSequence++;
+    }
+
+    openAddMovieButton.addEventListener("click", openAddMovieModal);
+    closeAddMovieButton.addEventListener("click", closeAddMovieModal);
+
+    addMovieModal.addEventListener("click", function (event) {
+        if (event.target === addMovieModal) {
+            closeAddMovieModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (
+            event.key === "Escape" &&
+            addMovieModal.classList.contains("is-open")
+        ) {
+            closeAddMovieModal();
+        }
+    });
+
+    // Show rating only when Watched is selected
+    addMovieWatched.addEventListener("change", function () {
+        addMovieRatingContainer.hidden = !addMovieWatched.checked;
+
+        if (!addMovieWatched.checked) {
+            addMovieRating.value = "0";
+        }
+    });
+
+    // Search for movies with debounce
+    addMovieSearch.addEventListener("input", function () {
+        const query = addMovieSearch.value.trim();
+
+        clearTimeout(searchTimeout);
+
+        const currentRequest = ++searchRequestSequence;
+
+        selectedMovie = null;
+        addMovieDetails.hidden = true;
+
+        if (query.length < 2) {
+            addMovieResults.innerHTML = "";
+            return;
+        }
+
+        searchTimeout = setTimeout(async function () {
+            const loadingMessage = document.createElement("p");
+            loadingMessage.textContent = "Searching movies...";
+
+            addMovieResults.innerHTML = "";
+            addMovieResults.appendChild(loadingMessage);
+
+            try {
+                const response = await fetch(
+                    `/api/search?q=${encodeURIComponent(query)}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Movie search failed.");
+                }
+
+                const movies = await response.json();
+
+                if (currentRequest !== searchRequestSequence) {
+                    return;
+                }
+
+                addMovieResults.innerHTML = "";
+
+                if (movies.length === 0) {
+                    const message = document.createElement("p");
+                    message.textContent = "No movies found. Try another title.";
+                    addMovieResults.appendChild(message);
+                    return;
+                }
+
+                movies.forEach(movie => {
+                    const resultButton = document.createElement("button");
+                    resultButton.type = "button";
+                    resultButton.className = "add-movie-result";
+
+                    const title = document.createElement("strong");
+                    title.textContent = movie.title;
+
+                    const genres = document.createElement("p");
+                    genres.textContent = movie.genres || "Genre unavailable";
+
+                    resultButton.appendChild(title);
+                    resultButton.appendChild(genres);
+
+                    resultButton.addEventListener("click", function () {
+                        selectMovie(movie);
+                    });
+
+                    addMovieResults.appendChild(resultButton);
+                });
+
+            } catch (error) {
+                if (currentRequest !== searchRequestSequence) {
+                    return;
+                }
+
+                addMovieResults.innerHTML = "";
+
+                const message = document.createElement("p");
+                message.textContent = "Unable to search movies. Please try again.";
+                addMovieResults.appendChild(message);
+
+                console.error("Add movie search error:", error);
+            }
+        }, 350);
+    });
+
+    // Select a search result
+    function selectMovie(movie) {
+        selectedMovie = movie;
+
+        const existingMovie = FilmFinderCollection.getMovie(movie.movieId);
+
+        selectedMovieTitle.textContent = movie.title;
+        selectedMovieGenres.textContent =
+            movie.genres || "Genre unavailable";
+
+        addMovieWatched.checked = Boolean(existingMovie?.watched);
+        addMovieWatchlist.checked = Boolean(existingMovie?.watchlist);
+        addMovieFavorite.checked = Boolean(existingMovie?.favorite);
+
+        addMovieRating.value = existingMovie?.rating
+            ? String(existingMovie.rating)
+            : "0";
+
+        addMovieRatingContainer.hidden = !addMovieWatched.checked;
+
+        addMovieDetails.hidden = false;
+
+        // Scroll down to the category options
+        requestAnimationFrame(() => {
+            addMovieWatched.closest("label").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+    }
+
+    // Show success notification
+    function showAddMovieToast(message) {
+        const toast = document.createElement("div");
+        toast.className = "add-movie-toast";
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            toast.classList.add("is-visible");
+        });
+
+        setTimeout(() => {
+            toast.classList.remove("is-visible");
+
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }, 2500);
+    }
+
+    // Save the selected movie
+    saveAddedMovieButton.addEventListener("click", function () {
+        if (!selectedMovie) {
+            return;
+        }
+
+        const watched = addMovieWatched.checked;
+        const watchlist = addMovieWatchlist.checked;
+        const favorite = addMovieFavorite.checked;
+
+        if (!watched && !watchlist && !favorite) {
+            alert("Please choose at least one collection category.");
+            return;
+        }
+
+        const success = FilmFinderCollection.addOrUpdate(selectedMovie, {
+            watched: watched,
+            watchlist: watchlist,
+            favorite: favorite,
+            rating: watched ? Number(addMovieRating.value) : 0
+        });
+
+        if (!success) {
+            alert("Unable to add this movie to your collection.");
+            return;
+        }
+
+        // Allow users to deliberately keep a watched movie on their watchlist
+        if (watched && watchlist) {
+            FilmFinderCollection.update(selectedMovie.movieId, {
+                watchlist: true
+            });
+        }
+
+        FilmFinderCollection.render();
+        closeAddMovieModal();
+        showAddMovieToast("Movie added to your collection!");
+    });
+
 });

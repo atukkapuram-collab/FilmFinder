@@ -75,6 +75,102 @@ a {
     background: rgba(80, 106, 125, 0.14);
 }
 
+/* ========================================
+   RESPONSIVE NAVIGATION
+======================================== */
+
+/* Hamburger button — hidden on desktop */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid rgba(130, 153, 169, 0.2);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #8299A9;
+    border-radius: 2px;
+}
+
+/* Grouped navigation and Get Started button */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+/* Gradually compact the desktop layout */
+@media (max-width: 1050px) {
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-menu {
+        gap: 22px;
+    }
+
+    .nav-links {
+        gap: 22px;
+    }
+}
+
+/* Switch to dropdown navigation */
+@media (max-width: 760px) {
+    .navbar {
+        height: 72px;
+        padding: 0 6%;
+        position: relative;
+        z-index: 1000;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 24px 6%;
+        background: #1B2228;
+        border-bottom: 1px solid rgba(130, 153, 169, 0.16);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-menu.is-open {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 13px 0;
+        border-bottom: 1px solid rgba(130, 153, 169, 0.1);
+    }
+
+    .nav-button {
+        text-align: center;
+    }
+}
 
 /* ========================================
    FOOTER

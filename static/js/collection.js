@@ -116,10 +116,6 @@ function updateMovie(movieId, updates) {
         ...updates
     };
 
-    // Automatically remove watched movies from the watchlist
-    if (collection[movieIndex].watched) {
-        collection[movieIndex].watchlist = false;
-    }
 
     return saveCollection(collection);
 }
@@ -378,10 +374,16 @@ function renderMovieSection(container, movies, category) {
                     [item.key]: !movie[item.key]
                 };
 
+                // When marking a movie as watched, remove it from the watchlist
+                if (item.key === "watched" && !movie.watched) {
+                    updates.watchlist = false;
+                }
+
+                // Reset the rating when removing a movie from Watched
                 if (item.key === "watched" && movie.watched) {
                     updates.rating = 0;
                 }
-
+                
                 if (updateMovie(movie.movieId, updates)) {
                     renderCollectionPage();
                 } else {

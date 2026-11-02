@@ -26,14 +26,24 @@
             FILM<span>FINDER</span>
         </a>
 
-        <nav class="nav-links">
-            <a href="/" class="active">Home</a>
-            <a href="/discover">Discover</a>
-            <a href="/my-movies">My Movies</a>
-            <a href="/about">About</a>
-        </nav>
+        <button class="menu-toggle" id="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <a href="/discover" class="nav-button">Get Started</a>
+        <div class="nav-menu" id="nav-menu">
+            <nav class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="/discover">Discover</a>
+                <a href="/my-movies">My Movies</a>
+                <a href="/about">About</a>
+            </nav>
+
+            <a href="/discover" class="nav-button">Get Started</a>
+        </div>
     </header>
 
 
@@ -147,6 +157,7 @@
 
     <script src="{{ url_for('static', filename='js/collection.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 
 </body>
 </html>

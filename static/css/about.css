@@ -548,6 +548,12 @@
         padding: 80px 0;
     }
 
+    .about-hero::before {
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .about-hero h1 {
         letter-spacing: -2px;
     }

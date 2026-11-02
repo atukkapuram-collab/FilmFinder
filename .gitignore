@@ -19,3 +19,21 @@ Thumbs.db
 
 # Movie datasets and generated data
 data/
+
+# Python test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build and distribution files
+build/
+dist/
+*.egg-info/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
