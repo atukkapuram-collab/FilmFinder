@@ -236,11 +236,32 @@
     aspect-ratio: 2 / 3;
 }
 
+.popular-movies-grid .poster-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .popular-movies-grid .movie-card h4 {
     color: #EEF0F2;
     font-size: 14px;
     margin-top: 12px;
     line-height: 1.4;
+}
+
+/* TMDB poster images on Home page */
+.popular-movies-grid .movie-card > .movie-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+}
+
+.popular-movies-grid .movie-card > .movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Responsive layout */
@@ -353,4 +374,51 @@
     .movie-modal-content {
         padding: 32px 24px;
     }
+}
+
+/* ========================================
+   HERO MOVIE POSTER CAROUSEL
+======================================== */
+
+.hero-poster-carousel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    z-index: 2;
+}
+
+.hero-poster {
+    position: absolute;
+    width: 175px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 9px;
+    border: 1px solid rgba(130, 153, 169, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-poster.is-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 3;
+}
+
+.hero-poster.is-next {
+    opacity: 0.55;
+    transform: translateX(65px) scale(0.82) rotate(8deg);
+    z-index: 2;
+}
+
+.hero-poster.is-previous {
+    opacity: 0.35;
+    transform: translateX(-65px) scale(0.82) rotate(-8deg);
+    z-index: 1;
 }

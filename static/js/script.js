@@ -16,6 +16,7 @@ const findSimilarButton = document.getElementById("find-similar-button");
 
 let selectedMovies = [];
 let recommendedMovieIds = new Set();
+let heroPosterInterval = null;
 
 
 // ========================================
@@ -37,7 +38,7 @@ function createPoster(movie, className = "movie-poster") {
             container.classList.add("poster-placeholder");
         };
 
-        container.classList.remove("poster-placeholder");
+        container.classList.add("has-poster");
         container.appendChild(image);
     }
 
@@ -557,6 +558,69 @@ async function loadPopularMovies() {
         }
 
         const popularMovies = await response.json();
+
+        // Load posters into the Home hero carousel
+        const heroCarousel = document.getElementById(
+            "hero-poster-carousel"
+        );
+
+        if (heroCarousel) {
+            const heroMovies = popularMovies
+                .filter(movie => movie.posterUrl)
+                .slice(0, 12);
+
+            heroCarousel.innerHTML = "";
+
+            const posters = [];
+
+            for (let i = 0; i < 3; i++) {
+                const image = document.createElement("img");
+                image.className = "hero-poster";
+                image.alt = "Movie poster";
+
+                heroCarousel.appendChild(image);
+                posters.push(image);
+            }
+
+            if (heroMovies.length > 0) {
+                let activeIndex = 0;
+
+                function updateHeroPosters() {
+                    const positions = [
+                        { offset: 0, className: "is-active" },
+                        { offset: 1, className: "is-next" },
+                        { offset: -1, className: "is-previous" }
+                    ];
+
+                    posters.forEach((poster, index) => {
+                        const movieIndex =
+                            (activeIndex + positions[index].offset +
+                            heroMovies.length) % heroMovies.length;
+
+                        const movie = heroMovies[movieIndex];
+
+                        poster.src = movie.posterUrl;
+                        poster.alt = `Poster for ${movie.title}`;
+
+                        poster.className =
+                            `hero-poster ${positions[index].className}`;
+                    });
+
+                    activeIndex = (activeIndex + 1) % heroMovies.length;
+                }
+
+                updateHeroPosters();
+
+                clearInterval(heroPosterInterval);
+
+                if (heroMovies.length > 1) {
+                    heroPosterInterval = setInterval(
+                        updateHeroPosters,
+                        3500
+                    );
+                }
+            }
+        }
 
         container.innerHTML = "";
 

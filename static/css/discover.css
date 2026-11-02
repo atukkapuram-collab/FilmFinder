@@ -445,7 +445,7 @@
     align-items: flex-start;
 }
 
-.selected-movie > div:first-child {
+.selected-movie > div:nth-child(2) {
     min-width: 0;
     flex: 1;
 }

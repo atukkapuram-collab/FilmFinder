@@ -1,11 +1,57 @@
 import re
 import pandas as pd
+import os
+import requests
+from functools import lru_cache
 from pathlib import Path
 
 from flask import Flask, render_template, request, jsonify
 from src.hybrid import load_hybrid_model, recommend_hybrid
 
 app = Flask(__name__)
+
+# ========================================
+# TMDB POSTER LOOKUP
+# ========================================
+
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500"
+
+
+@lru_cache(maxsize=2000)
+def get_movie_poster(imdb_id):
+    if not TMDB_API_KEY or not imdb_id:
+        return None
+
+    try:
+        response = requests.get(
+            "https://api.themoviedb.org/3/find/"
+            f"{imdb_id}",
+            params={
+                "api_key": TMDB_API_KEY,
+                "external_source": "imdb_id"
+            },
+            timeout=5
+        )
+
+        response.raise_for_status()
+        data = response.json()
+
+        movie_results = data.get("movie_results", [])
+
+        if not movie_results:
+            return None
+
+        poster_path = movie_results[0].get("poster_path")
+
+        if not poster_path:
+            return None
+
+        return f"{TMDB_IMAGE_BASE}{poster_path}"
+
+    except requests.RequestException as error:
+        print(f"TMDB lookup failed for {imdb_id}: {error}")
+        return None
 
 ALLOWED_GENRES = {
     "any",
@@ -168,11 +214,14 @@ def search_movies():
         by=["match_rank", "title"]
     ).head(10)
 
-    return jsonify(
-        matches[["movieId", "title", "genres"]].to_dict(
-            orient="records"
-        )
-    )
+    results = matches[
+        ["movieId", "title", "genres", "imdb_id"]
+    ].to_dict(orient="records")
+
+    for movie in results:
+        movie["posterUrl"] = get_movie_poster(movie["imdb_id"])
+
+    return jsonify(results)
 
 # ========================================
 # POPULAR MOVIES API
@@ -195,8 +244,12 @@ def popular_movies():
     popular["release_year"] = popular["title"].str.extract(r"\((\d{4})\)$")
 
     results = popular[
-        ["movieId", "title", "genres", "rating_count", "overview", "release_year"]
+        ["movieId", "title", "genres", "rating_count",
+        "overview", "release_year", "imdb_id"]
     ].to_dict(orient="records")
+
+    for movie in results:
+        movie["posterUrl"] = get_movie_poster(movie["imdb_id"])
 
     return jsonify(results)
 
@@ -261,9 +314,15 @@ def generate_recommendations():
     results = recommendations[
         ["movieId", "title", "genres"]
     ].to_dict(orient="records")
-    
-    return jsonify(results)
 
+    # Match recommendations back to the original movie dataset
+    imdb_lookup = movies.set_index("movieId")["imdb_id"]
+
+    for movie in results:
+        imdb_id = imdb_lookup.get(movie["movieId"])
+        movie["posterUrl"] = get_movie_poster(imdb_id)
+
+    return jsonify(results)
 
 
 if __name__ == "__main__":
